@@ -1,0 +1,218 @@
+<p-button label="Back to Grain List" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/grain-list']">
+</p-button>
+
+<h1>Grain Details</h1>
+
+<form #editForm="ngForm" (ngSubmit)="save(grain)">
+  <p-panel style="border: solid; border-radius: 10px; border-color: red;">
+
+    <div class="grid">
+
+      <!-- first group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="name" class="col-3">Name:</label>
+            <div class="col-9 mb-2">
+              <input id="name" type="text" class="rounded-textbox width:"
+                [(ngModel)]="grain.name" name="name">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="date" class="col-3">Date:</label>
+            <div class="col-9 mb-2">
+              <p-datePicker (onBlur)="dateChanged()" [(ngModel)]="enteredDate"
+                [iconDisplay]="'input'" [showIcon]="true"
+                [inputStyle]="{'width': '100%'}"
+                class="date-textbox width:100%"
+                id="date"
+                name="date">
+              </p-datePicker>
+
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="supplier" class="col-3">Supplier:</label>
+            <div class="col-9 mb-2">
+              <input id="supplier" type="text" class="rounded-textbox"
+                [(ngModel)]="grain.supplier" name="supplier">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="maltster" class="col-3">Maltster:</label>
+            <div class="col-9 mb-2">
+              <input id="maltster" type="text" class="rounded-textbox"
+                [(ngModel)]="grain.maltster" name="maltster">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="category" class="col-3">Category:</label>
+            <div class="col-9 mb-2">
+              <input id="category" type="text" class="rounded-textbox"
+                [(ngModel)]="grain.category" name="category">
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+      <!-- second group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="sackWeight" class="col-3">Sack Weight:</label>
+            <div class="col-9 mb-2">
+              <input id="sackWeight" type="number" class="rounded-textbox text-right"
+                step="0.1"
+                [(ngModel)]="grain.sackWeight" name="sackWeight">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="moistureContent" class="col-3">Moisture Content:</label>
+            <div class="col-9 mb-2">
+              <input id="moistureContent" type="number" class="rounded-textbox text-right"
+                step="0.1"
+                [(ngModel)]="grain.moistureContent"
+                name="moistureContent">
+            </div>
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="fgdb" class="col-3">FGDB:</label>
+            <div class="col-9 mb-2">
+              <input id="fgdb" type="number" class="rounded-textbox text-right" step="0.1" [(ngModel)]="grain.fgdb"
+                name="fgdb">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="proteinContent" class="col-3">Protein Content:</label>
+            <div class="col-9 mb-2">
+              <input id="proteinContent" type="number" class="rounded-textbox text-right" step="0.1"
+                [(ngModel)]="grain.proteinContent"
+                name="proteinContent">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="color" class="col-3">Color:</label>
+            <div class="col-9 mb-2">
+              <input id="color" type="number" class="rounded-textbox text-right"
+                step="0.1" [(ngModel)]="grain.color"
+                name="color">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="diastaticPower" class="col-3">Diastatic Power:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="diastaticPower" mode="decimal" class="rounded-textbox text-right"
+                [(ngModel)]="grain.diastaticPower"
+                suffix=" °L"
+                [showButtons]="true"
+                [min]="0"
+                name="diastaticPower">
+              </p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- third group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="basePrice" class="col-3">Base Price:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="basePrice" type="number"
+                mode="currency" currency="USD" locale="en-US"
+                [(ngModel)]="grain.basePrice"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black' }"
+                name="basePrice">
+              </p-inputNumber>
+            </div>
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="millingPrice" class="col-3">Milling Price:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="millingPrice" type="number"
+                mode="currency" currency="USD" locale="en-US"
+                [(ngModel)]="grain.millingPrice"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black' }"
+                name="millingPrice">
+              </p-inputNumber>
+
+
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="shippingPrice" class="col-3">Shipping Price:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="shippingPrice" type="number"
+                mode="currency" currency="USD" locale="en-US"
+                [(ngModel)]="grain.shippingPrice"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black' }"
+                name="shippingPrice">
+              </p-inputNumber>
+
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- third group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="initialQuantity" class="col-3">Initial Quantity:</label>
+            <div class="col-9 mb-2">
+              <input id="initialQuantity" type="number" class="rounded-textbox text-right" step="1"
+                [(ngModel)]="grain.initialQuantity"
+                name="initialQuantity">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="currentQuantity" class="col-3">Current Quantity:</label>
+            <div class="col-9 mb-2">
+              <input id="currentQuantity" type="number" class="rounded-textbox text-right" step="1"
+                [(ngModel)]="grain.currentQuantity"
+                name="currentQuantity">
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </p-panel>
+
+  <p>
+    <p-button label="{{ buttonLabel }}" type="submit"></p-button>
+
+
+
+</form>

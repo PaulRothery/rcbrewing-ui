@@ -1,0 +1,68 @@
+<p-button label="Back to Main Menu" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/main-menu']">
+</p-button>
+
+<h2>Hop</h2>
+
+<a routerLink="/hop-edit" pButton style="float: right;">
+  <span pButtonLabel>Add Hop</span>
+</a>
+
+@if (loading) {
+<div>
+  <p>Loading hops...</p>
+</div>
+} @else {
+<div class="alert alert-{{feedback.type}}">{{ feedback.message }}</div>
+}
+<br>
+
+<div class="spacer"></div>
+
+<div style="display: flex;">
+  <div class="table-container" style="margin-left: 50px; font-weight: bold;">
+
+    <p-table [value]="(hops$ | async) ?? []" showGridlines stripedRows>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+          <th pSortableColumn="supplier">Supplier <p-sortIcon field="supplier"></p-sortIcon></th>
+          <th pSortableColumn="lotNumber">Lot # <p-sortIcon field="lotNumber"></p-sortIcon></th>
+          <th pSortableColumn="cropYear">Crop year <p-sortIcon field="cropYear"></p-sortIcon></th>
+          <th pSortableColumn="price">Price <p-sortIcon field="price"></p-sortIcon></th>
+          <th pSortableColumn="alpha">Alpha <p-sortIcon field="alpha"></p-sortIcon></th>
+          <th pSortableColumn="initialQuantity">
+            <div>Initial</div>
+            <div>Quantity</div>
+            <p-sortIcon field="initialQuantity"></p-sortIcon>
+          </th>
+          <th pSortableColumn="currentQuantity">
+            <div>Current</div>
+            <div>Quantity</div>
+            <p-sortIcon field="currentQuantity"></p-sortIcon>
+          </th>
+        </tr>
+      </ng-template>
+
+      <ng-template let-hop pTemplate="body">
+        <tr [pSelectableRow]="hop">
+          <td>{{ hop.name }}</td>
+          <td>{{ hop.date | date:'yyyy-MM-dd' }}</td>
+          <td>{{ hop.supplier }}</td>
+          <td>{{ hop.lotNumber }}</td>
+          <td>{{ hop.cropYear }}</td>
+          <td class="th-right">{{ hop.price | currency }}</td>
+          <td class="th-right">{{ hop.alpha / 100 | percent:'1.2-2' }}</td>
+          <td>{{ hop.initialQuantity }}</td>
+          <td>{{ hop.currentQuantity }}</td>
+          <p-button icon="pi pi-pencil" severity="info" (click)="editHop(hop)"></p-button>
+          <p-button icon="pi pi-trash" severity="info" (click)="deleteHop(hop.id)"></p-button>
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>

@@ -1,0 +1,88 @@
+<p-button label="Back to Main Menu" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/main-menu']">
+</p-button>
+
+<h2>Grain</h2>
+
+<a routerLink="/grain-edit" pButton style="float: right; margin-right: 50px;">
+  <span pButtonLabel>Add</span>
+</a>
+
+
+@if (loading) {
+<div>
+  <p>Loading grains...</p>
+</div>
+}
+<br>
+
+
+<div style="display: flex;">
+  <div class="table-container" style="margin-left: 50px; font-weight: bold;">
+
+    <p-table [value]="(grains$ | async) ?? []" showGridlines stripedRows>
+
+      <ng-template #header>
+        <tr>
+          <th pSortableColumn="name">Name <p-sortIcon field="name"></p-sortIcon></th>
+          <th pSortableColumn="date">Date <p-sortIcon field="date"></p-sortIcon></th>
+          <th pSortableColumn="supplier">Supplier <p-sortIcon field="supplier"></p-sortIcon></th>
+          <th pSortableColumn="maltster">Maltster <p-sortIcon field="maltster"></p-sortIcon></th>
+          <th pSortableColumn="category">Category <p-sortIcon field="category"></p-sortIcon></th>
+          <th pSortableColumn="color">Color <p-sortIcon field="color"></p-sortIcon></th>
+
+          <!--
+          <th pSortableColumn="sackWeight">Sack Weight <p-sortIcon field="sackWeight"></p-sortIcon></th>
+          <th pSortableColumn="moistureContent">Moisture Content <p-sortIcon field="moistureContent"></p-sortIcon></th>
+          <th pSortableColumn="fgdb">FGDB <p-sortIcon field="fgdb"></p-sortIcon></th>
+          <th pSortableColumn="proteinContent">Protein Content <p-sortIcon field="proteinContent"></p-sortIcon></th>
+          <th pSortableColumn="diastaticPower">Diastatic Power <p-sortIcon field="diastaticPower"></p-sortIcon></th>
+          <th pSortableColumn="basePrice">Base Price <p-sortIcon field="basePrice"></p-sortIcon></th>
+          <th pSortableColumn="millingPrice">Milling Price <p-sortIcon field="millingPrice"></p-sortIcon></th>
+          <th pSortableColumn="shippingPrice">Shipping Price <p-sortIcon field="shippingPrice"></p-sortIcon></th>
+        -->
+          <th pSortableColumn="initialQuantity">Initial Quantity <p-sortIcon field="initialQuantity"></p-sortIcon></th>
+          <th pSortableColumn="currentQuantity">Current Quantity <p-sortIcon field="currentQuantity"></p-sortIcon></th>
+        </tr>
+      </ng-template>
+
+      <ng-template let-grain pTemplate="body">
+        <tr [pSelectableRow]="grain">
+
+          <td>{{ grain.name }}</td>
+          <td>{{ grain.date | date:'yyyy-MM-dd' }}</td>
+          <td>{{ grain.supplier }}</td>
+          <td>{{ grain.maltster }}</td>
+
+          <td>{{ grain.category }}</td>
+          <td>{{ grain.color }}</td>
+
+          <!--
+          <td>{{ grain.sackWeight }}</td>
+          <td>{{ grain.moistureContent }}</td>
+          <td>{{ grain.fgdb }}</td>
+          <td>{{ grain.proteinContent }}</td>
+
+          <td>{{ grain.diastaticPower }}</td>
+          <td class="th-right">{{ grain.basePrice | currency }}</td>
+          <td class="th-right">{{ grain.millingPrice | currency }}</td>
+          <td class="th-right">{{ grain.shippingPrice | currency }}</td>
+        -->
+
+          <td>{{ grain.initialQuantity }}</td>
+          <td>{{ grain.currentQuantity }}</td>
+
+          <p-button icon="pi pi-pencil" severity="info" (click)="editGrain(grain)"></p-button>
+          <p-button icon="pi pi-trash" severity="info" (click)="deleteGrain(grain.id)"></p-button>
+
+        </tr>
+      </ng-template>
+    </p-table>
+
+  </div>
+</div>
+
+<a routerLink="/grain-edit" pButton style="float: right; margin-right: 50px;">
+  <span pButtonLabel>Add</span>
+</a>
