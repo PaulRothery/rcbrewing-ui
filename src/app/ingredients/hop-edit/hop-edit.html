@@ -1,1 +1,169 @@
-<p>hop-edit works!</p>
+<p-button label="Back to Hop List" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/hop-list']">
+</p-button>
+
+<h1>Hop Details</h1>
+
+<form #editForm="ngForm" (ngSubmit)="save(hop)">
+  <p-panel style="border: solid; border-radius: 10px; border-color: red;">
+
+    <div class="grid">
+
+      <!-- first group -->
+      <div class="col-12 mb-20">
+        <div class="p-3 border-round-sm border-solid">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="name" class="col-3">Name:</label>
+            <div class="col-9 mb-2">
+              <input id="name" type="text" class="rounded-textbox width:"
+                [(ngModel)]="hop.name" name="name">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="date" class="col-3">Date:</label>
+            <div class="col-9 mb-2">
+              <p-datePicker (onSelect)="dateChanged()" [(ngModel)]="hop.date"
+                dateFormat="yy-mm-dd"
+                [showIcon]="true"
+                [inputStyle]="{'width': '100%'}"
+                class="date-textbox width:100%"
+                id="date"
+                name="date">
+              </p-datePicker>
+
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="supplier" class="col-3">Supplier:</label>
+            <div class="col-9 mb-2">
+              <input id="supplier" type="text" class="rounded-textbox"
+                [(ngModel)]="hop.supplier" name="supplier">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="lotNumber" class="col-3">Lot Number:</label>
+            <div class="col-9 mb-2">
+
+
+              <p-inputNumber id="lotNumber" mode="decimal"
+                [(ngModel)]="hop.lotNumber"
+                [showButtons]="true"
+                [min]="0"
+                [step]="1"
+                [useGrouping]="false"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="lotNumber">
+              </p-inputNumber>
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="cropYear" class="col-3">Crop Year:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="cropYear" mode="decimal"
+                [(ngModel)]="hop.cropYear"
+                [showButtons]="true"
+                [min]="2025"
+                [step]="1"
+                [useGrouping]="false"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="cropYear">
+              </p-inputNumber>
+            </div>
+
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="alphaAcids" class="col-3">Alpha acids:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="alphaAcids" mode="decimal"
+                [(ngModel)]="hop.alphaAcids"
+                suffix=" %"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.01"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="alphaAcids">
+              </p-inputNumber>
+            </div>
+          </div>
+        </div>
+      </div>
+
+
+      <!-- third group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-6 mt-01">
+            <label for="price" class="col-3">Price:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="basePrice" type="number"
+                mode="currency" currency="USD" locale="en-US"
+                [(ngModel)]="hop.price"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                name="price">
+              </p-inputNumber>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+
+      <!-- fourth group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-1 mt-01">
+            <label for="initialQuantity" class="col-3">Initial Quantity:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="initialQuantity" mode="decimal"
+                [(ngModel)]="hop.initialQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="initialQuantity">
+              </p-inputNumber>
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="currentQuantity" class="col-3">Current Quantity:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="currentQuantity" mode="decimal"
+                [(ngModel)]="hop.currentQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="currentQuantity">
+              </p-inputNumber>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </p-panel>
+
+  <p>
+    <p-button label="{{ buttonLabel }}" type="submit"></p-button>
+
+
+
+</form>

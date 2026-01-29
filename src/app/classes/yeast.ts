@@ -3,7 +3,6 @@ export class Yeast {
   strain!: string;
   date!: Date;
   supplier!: string;
-  maltster!: string;
   lotNumber!: string;
   brand!: string;
   previousBatchId!: number;
@@ -11,6 +10,4 @@ export class Yeast {
   generation!: number;
   cellCount!: number;
   viability!: number;
-  initialQuantity!: number;
-  currentQuantity!: number;
 }

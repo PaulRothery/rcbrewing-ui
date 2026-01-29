@@ -6,7 +6,7 @@ export class Hop {
   lotNumber!: string;
   cropYear!: number;
   price!: number;
-  alpha!: number;
+  alphaAcids!: number;
   initialQuantity!: number;
   currentQuantity!: number;
 }

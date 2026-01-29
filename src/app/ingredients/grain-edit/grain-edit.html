@@ -11,8 +11,8 @@
     <div class="grid">
 
       <!-- first group -->
-      <div class="col-6">
-        <div class="p-3 border-round-sm border-solid text-center">
+      <div class="col-6 mb-20">
+        <div class="p-3 border-round-sm border-solid">
 
           <div class="field grid mb-0 mt-01">
             <label for="name" class="col-3">Name:</label>
@@ -22,11 +22,13 @@
             </div>
           </div>
 
+
           <div class="field grid mb-0 mt-01">
             <label for="date" class="col-3">Date:</label>
             <div class="col-9 mb-2">
-              <p-datePicker (onBlur)="dateChanged()" [(ngModel)]="enteredDate"
-                [iconDisplay]="'input'" [showIcon]="true"
+              <p-datePicker (onBlur)="dateChanged()" [(ngModel)]="grain.date"
+                dateFormat="yy-mm-dd"
+                [showIcon]="true"
                 [inputStyle]="{'width': '100%'}"
                 class="date-textbox width:100%"
                 id="date"
@@ -35,7 +37,6 @@
 
             </div>
           </div>
-
           <div class="field grid mb-0 mt-01">
             <label for="supplier" class="col-3">Supplier:</label>
             <div class="col-9 mb-2">
@@ -52,7 +53,7 @@
             </div>
           </div>
 
-          <div class="field grid mb-0 mt-01">
+          <div class="field grid mb-7 mt-01">
             <label for="category" class="col-3">Category:</label>
             <div class="col-9 mb-2">
               <input id="category" type="text" class="rounded-textbox"
@@ -71,19 +72,37 @@
           <div class="field grid mb-0 mt-01">
             <label for="sackWeight" class="col-3">Sack Weight:</label>
             <div class="col-9 mb-2">
-              <input id="sackWeight" type="number" class="rounded-textbox text-right"
-                step="0.1"
-                [(ngModel)]="grain.sackWeight" name="sackWeight">
+
+
+              <p-inputNumber id="sackWeight" mode="decimal"
+                [(ngModel)]="grain.sackWeight"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="sackWeight">
+              </p-inputNumber>
             </div>
           </div>
 
           <div class="field grid mb-0 mt-01">
             <label for="moistureContent" class="col-3">Moisture Content:</label>
             <div class="col-9 mb-2">
-              <input id="moistureContent" type="number" class="rounded-textbox text-right"
-                step="0.1"
+
+
+
+              <p-inputNumber id="moistureContent" mode="decimal"
                 [(ngModel)]="grain.moistureContent"
+                suffix=" %"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                pTooltip="determines stability, storage life, and efficiency"
+                tooltipPosition="top"
                 name="moistureContent">
+              </p-inputNumber>
             </div>
           </div>
 
@@ -91,37 +110,62 @@
           <div class="field grid mb-0 mt-01">
             <label for="fgdb" class="col-3">FGDB:</label>
             <div class="col-9 mb-2">
-              <input id="fgdb" type="number" class="rounded-textbox text-right" step="0.1" [(ngModel)]="grain.fgdb"
+
+
+              <p-inputNumber id="fgdb" mode="decimal"
+                [(ngModel)]="grain.fgdb"
+                suffix=" %"
+                [showButtons]="true"
+                [min]="0"
+                [step]="1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                pTooltip="Fine Grind Dry Basis, a measure of the maximum potential soluble extract (primarily fermentable sugars) a malt can yield"
+                tooltipPosition="top"
                 name="fgdb">
+              </p-inputNumber>
             </div>
           </div>
 
           <div class="field grid mb-0 mt-01">
             <label for="proteinContent" class="col-3">Protein Content:</label>
             <div class="col-9 mb-2">
-              <input id="proteinContent" type="number" class="rounded-textbox text-right" step="0.1"
+              <p-inputNumber id="proteinContent" mode="decimal"
                 [(ngModel)]="grain.proteinContent"
+                suffix=" %"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
                 name="proteinContent">
+              </p-inputNumber>
             </div>
           </div>
 
           <div class="field grid mb-0 mt-01">
             <label for="color" class="col-3">Color:</label>
             <div class="col-9 mb-2">
-              <input id="color" type="number" class="rounded-textbox text-right"
-                step="0.1" [(ngModel)]="grain.color"
+              <p-inputNumber id="color" mode="decimal"
+                [(ngModel)]="grain.color"
+                suffix=" °L"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
                 name="color">
+              </p-inputNumber>
             </div>
           </div>
 
-          <div class="field grid mb-0 mt-01">
+          <div class="field grid mb-2 mt-01">
             <label for="diastaticPower" class="col-3">Diastatic Power:</label>
             <div class="col-9 mb-2">
-              <p-inputNumber id="diastaticPower" mode="decimal" class="rounded-textbox text-right"
+              <p-inputNumber id="diastaticPower" mode="decimal"
                 [(ngModel)]="grain.diastaticPower"
                 suffix=" °L"
                 [showButtons]="true"
                 [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                pTooltip="measure of starch-converting enzyme activity in malted grains"
+                tooltipPosition="top"
+
                 name="diastaticPower">
               </p-inputNumber>
             </div>
@@ -141,7 +185,7 @@
                 [(ngModel)]="grain.basePrice"
                 [showButtons]="true"
                 [min]="0"
-                [inputStyle]="{ 'border': '1px solid black' }"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
                 name="basePrice">
               </p-inputNumber>
             </div>
@@ -156,7 +200,7 @@
                 [(ngModel)]="grain.millingPrice"
                 [showButtons]="true"
                 [min]="0"
-                [inputStyle]="{ 'border': '1px solid black' }"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
                 name="millingPrice">
               </p-inputNumber>
 
@@ -164,7 +208,7 @@
             </div>
           </div>
 
-          <div class="field grid mb-0 mt-01">
+          <div class="field grid mb-1 mt-01">
             <label for="shippingPrice" class="col-3">Shipping Price:</label>
             <div class="col-9 mb-2">
               <p-inputNumber id="shippingPrice" type="number"
@@ -172,7 +216,7 @@
                 [(ngModel)]="grain.shippingPrice"
                 [showButtons]="true"
                 [min]="0"
-                [inputStyle]="{ 'border': '1px solid black' }"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
                 name="shippingPrice">
               </p-inputNumber>
 
@@ -181,25 +225,37 @@
         </div>
       </div>
 
-      <!-- third group -->
+      <!-- fourth group -->
       <div class="col-6">
         <div class="p-3 border-round-sm border-solid text-center">
 
           <div class="field grid mb-0 mt-01">
             <label for="initialQuantity" class="col-3">Initial Quantity:</label>
             <div class="col-9 mb-2">
-              <input id="initialQuantity" type="number" class="rounded-textbox text-right" step="1"
+              <p-inputNumber id="initialQuantity" mode="decimal"
                 [(ngModel)]="grain.initialQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
                 name="initialQuantity">
+              </p-inputNumber>
             </div>
           </div>
 
-          <div class="field grid mb-0 mt-01">
+          <div class="field grid mb-6 mt-01">
             <label for="currentQuantity" class="col-3">Current Quantity:</label>
             <div class="col-9 mb-2">
-              <input id="currentQuantity" type="number" class="rounded-textbox text-right" step="1"
+              <p-inputNumber id="currentQuantity" mode="decimal"
                 [(ngModel)]="grain.currentQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
                 name="currentQuantity">
+              </p-inputNumber>
             </div>
           </div>
 

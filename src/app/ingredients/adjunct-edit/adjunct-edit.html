@@ -1,1 +1,217 @@
-<p>adjunct-edit works!</p>
+<p-button label="Back to Adjunct List" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/adjunct-list']">
+</p-button>
+
+<h1>Adjunct Details</h1>
+
+<form #editForm="ngForm" (ngSubmit)="save(adjunct)">
+  <p-panel style="border: solid; border-radius: 10px; border-color: red;">
+
+    <div class="grid">
+
+      <!-- first group -->
+      <div class="col-6 mb-20">
+        <div class="p-3 border-round-sm border-solid">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="name" class="col-3">Name:</label>
+            <div class="col-9 mb-2">
+              <input id="name" type="text" class="rounded-textbox width:"
+                [(ngModel)]="adjunct.name" name="name">
+            </div>
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="date" class="col-3">Date:</label>
+            <div class="col-9 mb-2">
+              <p-datePicker (onBlur)="dateChanged()" [(ngModel)]="adjunct.date"
+                dateFormat="yy-mm-dd"
+                [showIcon]="true"
+                [inputStyle]="{'width': '100%'}"
+                class="date-textbox width:100%"
+                id="date"
+                name="date">
+              </p-datePicker>
+
+            </div>
+          </div>
+          <div class="field grid mb-0 mt-01">
+            <label for="supplier" class="col-3">Supplier:</label>
+            <div class="col-9 mb-2">
+              <input id="supplier" type="text" class="rounded-textbox"
+                [(ngModel)]="adjunct.supplier" name="supplier">
+            </div>
+          </div>
+
+          <div class="field grid mb-2 mt-01">
+            <label for="type" class="col-3">Type:</label>
+            <div class="flex gap-2 radio-textbox">
+
+              <p-radioButton
+                name="type"
+                value="FERMENTABLE"
+                [(ngModel)]="adjunct.type"
+                inputId="type1" />
+              <label for="type1" class="ml-2 mr-10">
+                Fermentable
+              </label>
+
+              <div class="mr-2"></div>
+
+              <p-radioButton
+                name="type"
+                value="NON-FERMENTABLE"
+                [(ngModel)]="adjunct.type"
+                inputId="type2" />
+              <label for="type2" class="ml-2">
+                Non-Fermentable
+              </label>
+
+
+
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="category" class="col-3">Category:</label>
+            <div class="col-9 mb-2">
+              <input id="category" type="text" class="rounded-textbox"
+                [(ngModel)]="adjunct.category" name="category">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="extract" class="col-3">Extract:</label>
+            <div class="col-9 mb-2">
+
+              <p-inputNumber id="extract" mode="decimal"
+                [(ngModel)]="adjunct.extract"
+                suffix=" l°/kg"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                pTooltip="liter-degrees per kilogram representing the fermentable sugar potential, used to calculate potential gravity points for recipe formulation "
+                tooltipPosition="top"
+                name="extract">
+              </p-inputNumber>
+            </div>
+
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="ppg" class="col-3">PPG:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="ppg" mode="decimal"
+                [(ngModel)]="adjunct.ppg"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                pTooltip="Points per Pound per Gallon, a measurement of the maximum potential gravity (sugar content) a fermentable ingredient (malt, grain, or sugar) contributes"
+                tooltipPosition="top"
+                name="ppg">
+              </p-inputNumber>
+            </div>
+          </div>
+          <div class="field grid mb-0 mt-01">
+            <label for="colorLov" class="col-3">Color Lovibond:</label>
+            <div class="col-9 mb-2">
+
+
+              <p-inputNumber id="colorLov" mode="decimal"
+                [(ngModel)]="adjunct.colorLov"
+                suffix=" °L"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                pTooltip="visual scale to measure the color of malt and beer by comparing samples to glass slides"
+                tooltipPosition="top"
+
+                name="colorLov">
+              </p-inputNumber>
+            </div>
+          </div>
+
+
+
+        </div>
+      </div>
+
+      <!-- second group -->
+      <div class="col-6">
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-50 mt-01">
+            <label for="price" class="col-3">Price:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="price" type="number"
+                mode="currency" currency="USD" locale="en-US"
+                [(ngModel)]="adjunct.price"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                name="price">
+              </p-inputNumber>
+            </div>
+          </div>
+
+
+
+        </div>
+
+        <br>
+        <br>
+        <br>
+
+        <!-- third group -->
+
+        <div class="p-3 border-round-sm border-solid text-center">
+
+          <div class="field grid mb-50 mt-01">
+            <label for="initialQuantity" class="col-3">Initial Quantity:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="initialQuantity" mode="decimal"
+                [(ngModel)]="adjunct.initialQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="initialQuantity">
+              </p-inputNumber>
+            </div>
+          </div>
+
+          <div class="field grid mb-6 mt-01">
+            <label for="currentQuantity" class="col-3">Current Quantity:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="currentQuantity" mode="decimal"
+                [(ngModel)]="adjunct.currentQuantity"
+                suffix=" lbs"
+                [showButtons]="true"
+                [min]="0"
+                [step]="0.1"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="currentQuantity">
+              </p-inputNumber>
+            </div>
+          </div>
+
+        </div>
+      </div>
+    </div>
+
+
+  </p-panel>
+
+  <p>
+    <p-button label="{{ buttonLabel }}" type="submit"></p-button>
+
+
+
+</form>

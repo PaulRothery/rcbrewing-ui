@@ -16,6 +16,16 @@
 
 }
 
+.radio-textbox {
+  width: 58%; 
+  border-radius: 2px;
+  border: 1px solid black;
+  margin-left: 8px;
+  padding: 8px;
+
+
+}
+
 .date-textbox {
   width: 80%; 
   border: 1px solid black;

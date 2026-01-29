@@ -9,6 +9,7 @@ import { Panel } from "primeng/panel";
 import { Button } from "primeng/button";
 import { NgClass } from "@angular/common";
 import { InputNumber } from "primeng/inputnumber";
+import { Tooltip } from "primeng/tooltip";
 
 @Component({
   selector: 'app-grain-edit',
@@ -18,8 +19,8 @@ import { InputNumber } from "primeng/inputnumber";
     Panel,
     Button,
     RouterLink,
-    DatePicker,
-    InputNumber
+    InputNumber,
+    Tooltip
   ],
   templateUrl: './grain-edit.html',
   styleUrl: './grain-edit.css',
@@ -38,9 +39,8 @@ export class GrainEdit implements OnInit {
 
   buttonLabel!: string
   feedback: any = {};
-
   enteredDate: Date = new Date();
-  newDate: Date = new Date();
+
 
   constructor(private router: Router, private service: GrainService) { }
 
@@ -53,7 +53,7 @@ export class GrainEdit implements OnInit {
       this.operation = 'add';
       this.buttonLabel = 'Add';
     } else {
-      console.log("loading grain ..." + this.grain.name);
+      console.log("loading grain ..." + this.grain.name + " " + this.grain.date);
       this.buttonLabel = 'Update';
     }
 
@@ -93,7 +93,8 @@ export class GrainEdit implements OnInit {
   }
 
   dateChanged() {
-    console.log("date changed: ", this.enteredDate);
+    console.log("date changed: " + this.grain.date);
+
   }
 
 }

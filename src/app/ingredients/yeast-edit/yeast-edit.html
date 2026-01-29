@@ -1,1 +1,165 @@
-<p>yeast-edit works!</p>
+<p-button label="Back to Yeast List" icon="pi pi-arrow-left" iconPos="left" size="small"
+  class="mb-3" severity="secondary"
+  [routerLink]="['/yeast-list']">
+</p-button>
+
+<h1>Yeast Details</h1>
+
+<form #editForm="ngForm" (ngSubmit)="save(yeast)">
+  <p-panel style="border: solid; border-radius: 10px; border-color: red;">
+
+    <div class="grid">
+
+      <!-- first group -->
+      <div class="col-12 mb-20">
+        <div class="p-3 border-round-sm border-solid">
+
+          <div class="field grid mb-0 mt-01">
+            <label for="strain" class="col-3">Strain:</label>
+            <div class="col-9 mb-2">
+              <input id="strain" type="text" class="rounded-textbox width:"
+                [(ngModel)]="yeast.strain" name="strain">
+            </div>
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="brand" class="col-3">Brand:</label>
+            <div class="col-9 mb-2">
+              <input id="brand" type="text" class="rounded-textbox"
+                [(ngModel)]="yeast.brand" name="brand">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="supplier" class="col-3">Supplier:</label>
+
+            <div class="col-9 mb-2">
+              <input id="supplier" type="text" class="rounded-textbox"
+                [(ngModel)]="yeast.supplier" name="supplier">
+            </div>
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="date" class="col-3">Date:</label>
+            <div class="col-3 mb-2">
+              <p-datePicker (onSelect)="dateChanged()" [(ngModel)]="yeast.date"
+                dateFormat="yy-mm-dd"
+                [showIcon]="true"
+                [inputStyle]="{'width': '100%'}"
+                class="date-textbox width:100%"
+                id="date"
+                name="date">
+              </p-datePicker>
+
+            </div>
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="lotNumber" class="col-3">Lot Number:</label>
+
+            <div class="col-9 mb-2">
+              <input id="lotNumber" type="text" class="rounded-textbox"
+                [(ngModel)]="yeast.lotNumber" name="lotNumber">
+            </div>
+
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="previousBatchId" class="col-3">Previous Batch Id:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="previousBatchId" mode="decimal"
+                [(ngModel)]="yeast.previousBatchId"
+                [showButtons]="true"
+                [min]="0"
+                [step]="1"
+                [useGrouping]="false"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right' }"
+                name="previousBatchId">
+              </p-inputNumber>
+            </div>
+
+          </div>
+
+
+          <div class="field grid mb-0 mt-01">
+            <label for="previousBatchBrand" class="col-3">Previous Batch Brand:</label>
+            <div class="col-9 mb-2">
+              <input id="previousBatchBrand" type="text" class="rounded-textbox"
+                [(ngModel)]="yeast.previousBatchBrand" name="previousBatchBrand">
+            </div>
+          </div>
+          <div class="field grid mb-0 mt-01">
+            <label for="generation" class="col-3">Generation:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="generation" type="number"
+                mode="decimal"
+                [(ngModel)]="yeast.generation"
+                [showButtons]="true"
+                [min]="0"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                pTooltip="number of times a yeast culture has been cropped and re-pitched into a new batch of wort"
+                tooltipPosition="top"
+                name="generation">
+              </p-inputNumber>
+            </div>
+
+
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="cellCount" class="col-3">Cell Count:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="cellCount" type="number"
+                mode="decimal"
+                [(ngModel)]="yeast.cellCount"
+                [showButtons]="true"
+                [min]="0"
+                suffix=" cells/mL"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                pTooltip="Density/Concentration: cells per milliliter to determine total yeast quantity"
+                tooltipPosition="top"
+
+                name="cellCount">
+              </p-inputNumber>
+            </div>
+
+
+          </div>
+
+          <div class="field grid mb-0 mt-01">
+            <label for="viability" class="col-3">Viability:</label>
+            <div class="col-9 mb-2">
+              <p-inputNumber id="viability" type="number"
+                mode="decimal"
+                [(ngModel)]="yeast.viability"
+                [showButtons]="true"
+                [min]="0"
+                suffix=" %"
+                [step]="0.01"
+                [inputStyle]="{ 'border': '1px solid black', 'text-align': 'right'  }"
+                pTooltip="proportion of living cells within the yeast population"
+                tooltipPosition="top"
+
+                name="viability">
+              </p-inputNumber>
+            </div>
+
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+
+
+
+  </p-panel>
+
+  <p>
+    <p-button label="{{ buttonLabel }}" type="submit"></p-button>
+
+
+
+</form>

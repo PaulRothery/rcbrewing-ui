@@ -3,7 +3,7 @@ import { Observable } from 'rxjs';
 import { Hop } from '../../classes/hop';
 import { HopService } from '../../services/hop.service';
 import { ButtonLabel, ButtonDirective, Button } from "primeng/button";
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { AsyncPipe, DatePipe, CurrencyPipe, PercentPipe } from "@angular/common";
 import { TableModule } from "primeng/table";
 import { PrimeTemplate } from "primeng/api";
@@ -23,62 +23,42 @@ export class HopList implements OnInit {
 
   hops$!: Observable<Hop[]>;
 
-  constructor(private hopService: HopService) { }
+
+  constructor(private hopService: HopService, private router: Router) { }
 
   ngOnInit() {
-
 
 
     this.hops$ = this.hopService.getAll();
     this.loading = false;
 
   }
-
-  editHop(Hop: Hop) {
-    /*     console.log("editing Hop: ", Hop.id);
-        this.router.navigate(['/Hop-edit', Hop.id], {
-          state: { Hop: Hop }
-        }); */
+  editHop(hop: Hop) {
+    console.log("editing hop: ", hop.id);
+    this.router.navigate(['/hop-edit', hop.id], {
+      state: { hop: hop }
+    });
   }
 
   deleteHop(id: string) {
 
-    /*     if (confirm("Are you sure you want to delete this Hop?")) {
-          console.log("deleting Hop: ", id);
-          this.HopSubscription = this.HopService.delete(id).subscribe({
-            next: () => {
-              this.feedback = { type: 'success', message: 'Hop deleted successfully.' };
-              setTimeout(() => {
-                this.ngOnInit();
-              }, 1000);
-            },
-            error: (err) => {
-              this.feedback = {
-                severity: 'error',
-                summary: 'Error',
-                detail: 'Failed to delete Hop: ' + err.message,
-                life: 5000,
-              };
-              console.error('Error deleting Hop', err);
-            }
-          });
-    
-    
-          this.HopSubscription = this.HopService.get().subscribe({
-            next: (data: Hop[]) => {
-              this.Hops = data;
-              this.loading = false;
-              this.feedback = {};
-            },
-    
-            error: (err) => {
-              this.feedback = { type: 'error', message: 'Failed to load Hop list: ' + err.message };
-              console.error('Error loading Hop list', err);
-            }
-          });
-    
-    
-        } */
+    console.log("deleting hop: ", id);
+    if (confirm("Are you sure you want to delete this hop?")) {
+
+      this.hopService.delete(id).subscribe({
+        next: (data: Hop[]) => {
+          console.log('Record deleted successfully');
+          this.hops$ = this.hopService.getAll();
+
+        },
+        error: (err) => {
+          console.error('Error deleting hop', err);
+        }
+      });
+    }
+
+    this.ngOnInit
+
   }
 
 }

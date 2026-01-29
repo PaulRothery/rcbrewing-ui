@@ -10,7 +10,15 @@ import { PrimeTemplate } from "primeng/api";
 
 @Component({
   selector: 'app-grain-list',
-  imports: [TableModule, AsyncPipe, DatePipe, Button, RouterLink, ButtonDirective, ButtonLabel, PrimeTemplate],
+  imports: [
+    TableModule,
+    AsyncPipe,
+    DatePipe,
+    Button,
+    RouterLink,
+    ButtonDirective,
+    ButtonLabel,
+    PrimeTemplate],
   templateUrl: './grain-list.html',
   styleUrl: './grain-list.css',
 })
